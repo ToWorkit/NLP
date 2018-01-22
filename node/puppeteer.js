@@ -1,9 +1,17 @@
+/**
+ * 使用 puppeteer(chromeheadless) -> 谷歌无头浏览器 拦截页面ajax获取数据
+ * @type {[type]}
+ * https://github.com/ChromeDevTools/awesome-chrome-devtools#chrome-devtools-protocol
+ * https://developers.google.cn/web/tools/puppeteer/examples
+ * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md
+ */
 const puppeteer = require('puppeteer');
 var child_process = require('child_process');
 var fs = require('fs')
 let axios = require('axios')
 let qs = require('qs')
 
+// 睡眠
 function sleep(second) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -12,6 +20,7 @@ function sleep(second) {
     })
 }
 
+// 接收参数 node puppeteer.js <参数>
 var arguments = process.argv.splice(2);
 // console.log(arguments)
 var book_id = `${arguments[0]}`
@@ -28,6 +37,7 @@ class Parse {
     // 是否显示浏览器
     this.browser = await puppeteer.launch({
       'headless': false,
+      // 使用本地浏览器
       // 'executablePath': 'C:/Users/hedy/AppData/Local/Google/Chrome/Application/chrome.exe'
     });
     // 等待页面打开
@@ -51,9 +61,13 @@ class Parse {
     // console.log(page)
     // 获取请求完成的信息
     page.on('requestfinished', request => {
+      // 拦截ajax
       if (request.resourceType == "xhr") {
         // console.log(request.method);
         if (request.method == "POST") {
+          /**
+           * post 操作
+           */
           // console.log(request.postData);
         }
         if(request.url.indexOf('http://walden1.shuqireader.com/webapi/book/info') != -1) {
@@ -75,6 +89,7 @@ class Parse {
               'book_update_time': res_data.lastInsTime
             }
             // console.log(await bookMessage)
+            // 传递数据
             const put_book = params => axios.post(`http://192.168.0.126:8011/v1.0/other/book_info`,  qs.stringify(params))
             put_book(await bookMessage).then( async (res) => {
               if (res.data.code == 200) {
@@ -165,6 +180,7 @@ class Parse {
                       await _page.goto(chapter_url_);
                       await sleep(1000)
                       // await _browser.close()
+                      // 等待页面元素加载完成
                       _page.mainFrame().waitForSelector('#read_in > div.read-main > div.read-body > div:nth-child(1) > p:nth-child(4)').then(async () => {
                         let page_content = await _page.$eval('#read_in div.read-main div.read-body', el => el.innerText);
                         try{
@@ -189,6 +205,8 @@ class Parse {
                             }
                           }).catch(err => {
                             console.log(err)
+                            await sleep(1000)
+                            await _browser.close();
                           })
                         }
                       })

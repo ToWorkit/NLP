@@ -1,3 +1,7 @@
+/**
+ * 请求接口的方式获取数据
+ */
+
 let request = require('request')
 let express = require('express')
 let axios = require('axios')
