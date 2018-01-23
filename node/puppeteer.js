@@ -116,7 +116,6 @@ class Parse {
     page.on('requestfinished', request => {
       if (request.resourceType == "xhr") {
         // console.log(request.method);
-        
         if (request.method == "POST") {
           // console.log(request.postData);
         }
