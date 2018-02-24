@@ -18,3 +18,6 @@ D_t = pd.DataFrame([x, x + 1]).T
 print(D_t)
 
 print(np.arange(10))
+
+d = [i for i in range(5)]
+print(d)
