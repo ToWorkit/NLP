@@ -42,6 +42,7 @@ print(second_sort(list_, list_1))
 import random
 def main():
   # 随机生成两个长度不相等的列表，并且进行排序
+  # randint(上限，下限)
   first = sorted(random.sample(range(100), random.randint(3, 6)))
   second = sorted(random.sample(range(100), random.randint(3, 6)))
 
@@ -52,6 +53,7 @@ def main():
 
   second_s = second_sort(first, second)
   print('second_s:', second_s)
+  # 断言测试
   # 断言，如果不为True则会报出错误
   assert first_s == second_s
 if __name__ == '__main__':
