@@ -21,3 +21,16 @@ print(np.arange(10))
 
 d = [i for i in range(5)]
 print(d)
+
+
+import pandas as pd
+data=[[1,2,3],[4,5,6], [7, 8, 9]]
+index=['a','b','f']#行号
+columns=['c','d','e']#列号
+df=pd.DataFrame(data,index=index,columns=columns)#生成一个数据框
+print(df)
+# 取下标为 2 的数据
+print(df.iloc[:, 2])
+
+# 各项乘积 
+print(pd.Series([1, 2, 3, 4]).prod())
