@@ -24,3 +24,16 @@ a_ = pd.Series(['a', 'b', 'c', 'e'])
 b_ = pd.Series(['a-->b', 'a-->c', 'a-->e', 'b-->c', 'c-->e'])
 a_ = a_.append(b_)
 print(a_)
+
+
+print([1] + [2] + [])
+
+# 含头不含尾
+print(str_l[:2])
+print(str_l[2:])
+# 从 2 之后计算 索引
+print(str_l[2:3])
+
+# Series格式
+li_1 = pd.Series([1, 2, 3, 4, 5])
+print(li_1[li_1 > 2])
