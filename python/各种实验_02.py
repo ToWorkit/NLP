@@ -20,6 +20,7 @@ x = list(map(lambda i: i.split('-->'), str_l))
 print(x)
 print(type('a'.split('--')))
 
+
 a_ = pd.Series(['a', 'b', 'c', 'e'])
 b_ = pd.Series(['a-->b', 'a-->c', 'a-->e', 'b-->c', 'c-->e'])
 a_ = a_.append(b_)
@@ -37,3 +38,5 @@ print(str_l[2:3])
 # Series格式
 li_1 = pd.Series([1, 2, 3, 4, 5])
 print(li_1[li_1 > 2])
+
+
