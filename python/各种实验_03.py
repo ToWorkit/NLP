@@ -14,7 +14,7 @@ str_l = [
 # 转为矩阵
 str_l = np.array(str_l)
 print(type(str_l))
-# 切片
+# 80% 训练集，20% 测试集
 train = str_l[:int(len(str_l) * 0.8), :]
 test = str_l[int(len(str_l) * 0.8):, :]
 
