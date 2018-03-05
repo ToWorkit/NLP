@@ -21,6 +21,9 @@ test = str_l[int(len(str_l) * 0.8):, :]
 print(train)
 print('-' * 20)
 print(test)
+print(len(str_l))
+
+print(train[:, :3].reshape(2, 9))
 
 
 # 切片
