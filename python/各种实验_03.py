@@ -32,3 +32,24 @@ li_ = [1, 2, 3, 4, 5, 6, 7, 8 ,9]
 # 含头不含尾
 print(li_[2:])
 print(li_[:2])
+
+import time
+
+# dt = "2016-05-05 20:28:54"
+dt = "2014/03/31"
+# http://blog.csdn.net/google19890102/article/details/51355282
+# 转换成时间数组
+# timeArray = time.strptime(dt, "%Y-%m-%d %H:%M:%S")
+timeArray = time.strptime(dt, "%Y/%m/%d")
+# 转换为时间戳
+dt_new = time.mktime(timeArray)
+
+print(dt_new)
+
+
+def test(ti_1, ti_2):
+    # strptime -> 转换为时间数组
+    # mktime -> 转换为时间戳
+    return time.mktime(time.strptime(ti_1, '%Y/%m/%d')) - time.mktime(time.strptime(ti_2, '%Y/%m/%d'))
+
+print(test('2014/03/31', '2006/01/07') / 1000 / 60 / 60 / 24 / 30)
