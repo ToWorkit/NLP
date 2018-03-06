@@ -52,4 +52,4 @@ def test(ti_1, ti_2):
     # mktime -> 转换为时间戳
     return time.mktime(time.strptime(ti_1, '%Y/%m/%d')) - time.mktime(time.strptime(ti_2, '%Y/%m/%d'))
 
-print(test('2014/03/31', '2006/01/07') / 1000 / 60 / 60 / 24 / 30)
+print(test('2014/03/31', '2006/11/02') / 60 / 60 / 24 / 30)
