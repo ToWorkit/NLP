@@ -53,3 +53,14 @@ def test(ti_1, ti_2):
     return time.mktime(time.strptime(ti_1, '%Y/%m/%d')) - time.mktime(time.strptime(ti_2, '%Y/%m/%d'))
 
 print(test('2014/03/31', '2006/11/02') / 60 / 60 / 24 / 30)
+
+
+data = np.array([[1, 2, 3, 4, 5], [6, 4, 3, 2, 1], [6, 4, 3, 2, 8], [8, 7, 6, 4, 2], [0, 0, 2, 3, 1]])
+print(type(data))
+# 从 下标为 2 的位置开始截取，一直取到结尾(含头)
+print(data[:, 2:])
+# 尾部只能取 负值
+print(data[:, 2:-1])
+print('-' * 30)
+# 取索引为 0 列的数据
+print(data[:, 0])

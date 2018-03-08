@@ -19,7 +19,7 @@ str_l = ['a', 'b', 'c', 'd', 'e']
 x = list(map(lambda i: i.split('-->'), str_l))
 print(x)
 print(type('a'.split('--')))
-
+print('a'.split('--'))
 
 a_ = pd.Series(['a', 'b', 'c', 'e'])
 b_ = pd.Series(['a-->b', 'a-->c', 'a-->e', 'b-->c', 'c-->e'])
