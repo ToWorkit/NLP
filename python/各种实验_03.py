@@ -64,3 +64,5 @@ print(data[:, 2:-1])
 print('-' * 30)
 # 取索引为 0 列的数据
 print(data[:, 0])
+
+print([i for i in range(1, 3)])
