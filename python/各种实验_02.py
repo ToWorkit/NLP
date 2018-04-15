@@ -16,10 +16,13 @@ print(pd_li[pd.notnull(pd_li)].prod(), '----')
 
 
 str_l = ['a', 'b', 'c', 'd', 'e']
-x = list(map(lambda i: i.split('-->'), str_l))
+print(type(str_l))
+x = list(map(lambda i: i.split(' '), str_l))
+# 会拆分成二维数组
+# [['a'], ['b'], ['c'], ['d'], ['e']]
 print(x)
-print(type('a'.split('--')))
-print('a'.split('--'))
+print(type('a'.split(' ')))
+print('a'.split(' '))
 
 a_ = pd.Series(['a', 'b', 'c', 'e'])
 b_ = pd.Series(['a-->b', 'a-->c', 'a-->e', 'b-->c', 'c-->e'])
