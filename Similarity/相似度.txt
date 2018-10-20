@@ -96,9 +96,35 @@
 			4 * 2 / (5 + 8) = 8 / 13
 				
 			
+			(1)动态规划
+				找到一种可迭代的规律不断的进行迭代
 				
-			
-		
+				字符串X，长度为m，从1开始数
+				字符串Y，长度为n，从1开始数
+					Xi = <x1, x2, ...., xi> (右下角)即X序列的前i个字符(1<=i<=m) Xi 计作 "字符串X的i前缀"
+						今天周末不出去玩吗
+						len = 9
+						i = 3
+						Xi = 今天周
+					Yj = <y1, y2, ...., yj> (右下角)即Y序列的前j个字符(1<=j<=n) Yj 计作 "字符串Y的j前缀"
+				LCS(X, Y)为字符串X和Y的最长公共子序列，即为Z = <z1, z2, ..., zK> => Z = LCS(X, Y)
+				
+				如果xm = yn（最后一个字符相同），则：Xm 与 Yn的最长公共子序列Zk的最后一个字符必定为 xm(或者yn)
+					• zk = xm = yn
+					• LCS(Xm, Yn) = LCS(Xm-1, Yn−1) + xm
+				
+				
+				如果Xm = Yn
+					  1 2 3 4 5 6 7
+					X B D C A B A	
+					Y A B C B D A B
+				
+				• 对于上面的字符串X和Y：
+				• x3 = y3 = ‘C’ 则有：LCS(BDC, ABC) = LCS(BD, AB) + ‘C’	=> C
+				• x5 = y4 = ‘B’ 则有：LCS(BDCAB, ABCB) = LCS(BDCA, ABC) + ‘B’ => B
+				
+				如果xm ≠ yn，则LCS(Xm, Yn) = LCS(Xm - 1, Yn)，或者LCS(Xm, Yn) = LCS(Xm, Yn−1), 即LCS(Xm, Yn) = max{LCS(Xm-1, Yn), LCS(Xm, Yn−1)}, 最长即最大 => max
+				
 			
 		
 		
