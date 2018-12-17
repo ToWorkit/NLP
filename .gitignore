@@ -10,6 +10,8 @@ selenium-debug.log
 .idea/
 .ipynb_checkpoints
 ml_base/.ipynb_checkpoints
+example/lr/main/raw_data
+example/lr/main/data
 
 # Editor directories and files
 .idea
