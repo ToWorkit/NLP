@@ -2,6 +2,7 @@ import operator
 import math
 
 '''
+    基于用户的协同过滤
     train数据集格式
         {user_id: {item_id: rating}}
 '''

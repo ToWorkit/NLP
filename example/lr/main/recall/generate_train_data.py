@@ -1,7 +1,10 @@
+'''
+    测试udata的推荐topN
+'''
 import pandas as pd
-import recall.user_cf
+import recall.user_cf as user_cf
 import operator
-import recall.item_cf
+import recall.item_cf as item_cf
 
 
 data_path = '../raw_data/u.data'

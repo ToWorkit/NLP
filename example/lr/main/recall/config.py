@@ -1,3 +1,6 @@
+'''
+    配置文件和方法
+'''
 import os
 import pandas as pd
 
@@ -23,9 +26,13 @@ ICF_PREFIX = 'ICF_'
 # recommend list out file
 cf_rec_lst_outfile = '../data/cf_reclst.data'
 
+# 特征数据和模型以及交叉验证数据集
+user_feat_map_file = '../data/map/user_feat_map'
+model_file = '../data/map/model_file'
+cross_file = '../data/map/cross_file'
 
 # item description data
-def get_music_meta(nrows=None):
+def gen_music_meta(nrows=None):
     df_music_meta = pd.read_csv(music_data,
                                 sep='\001',
                                 nrows=nrows,
@@ -36,14 +43,14 @@ def get_music_meta(nrows=None):
 
 
 # user profile data
-def get_user_profile(nrows=None):
+def gen_user_profile(nrows=None):
     return pd.read_csv(user_profile,
                        sep=',',
                        nrows=nrows,
                        names=['user_id', 'gender', 'age', 'salary', 'province'])
 
 # user action data
-def get_user_watch(nrows = None):
+def gen_user_watch(nrows = None):
     return pd.read_csv(user_watch_pref,
                        sep = '\001',
                        nrows = nrows,

@@ -1,3 +1,6 @@
+'''
+    保存推荐列表
+'''
 import recall.item_cf as ic
 import recall.user_cf as uc
 import recall.config as conf

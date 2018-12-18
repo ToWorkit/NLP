@@ -1,3 +1,7 @@
+'''
+    数据处理，保存为 {user_id: {item_id: rating}} 格式
+'''
+
 import recall.config as conf
 import pandas as pd
 
@@ -6,9 +10,9 @@ train_file = conf.cf_train_data_path
 # 数据集
 def user_item_score():
     # 读取10000条
-    user_watch = conf.get_user_watch(10000)
+    user_watch = conf.gen_user_watch(10000)
     # 取music_meta中商品总共的时长
-    music_meta = conf.get_music_meta()
+    music_meta = conf.gen_music_meta()
     # print(user_watch)
     # print(music_meta)
 
