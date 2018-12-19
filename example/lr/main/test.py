@@ -1,1 +1,4 @@
-print(1)
+print(len([1]))
+
+for i in range(10):
+    print(i)

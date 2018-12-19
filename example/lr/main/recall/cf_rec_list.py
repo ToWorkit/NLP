@@ -29,6 +29,7 @@ reclst = dict()
 user_user_sim = uc.user_similarity(train)
 with open(user_user_sim_file, 'w', encoding = 'utf-8') as uuf:
     uuf.write(str(user_user_sim))
+# 8G内存
 print("user base cf similarity saved")
 for user_id in train.keys():
     rec_item_list = uc.recommend(user_id, train, user_user_sim, 10)
@@ -39,6 +40,7 @@ print("user base cf done, item base cf starting")
 '''
     基于物品的协同过滤 item base cf
 '''
+# 商品相似度矩阵
 item_item_sim = ic.item_similarity(train)
 with open(item_item_sim_file, 'w', encoding = 'utf-8') as iif:
     iif.write(str(item_item_sim))
@@ -50,4 +52,5 @@ for user_id in train.keys():
 
 with open(cf_rec_lst_outfile, 'w', encoding = 'utf-8') as rcf:
     rcf.write(str(reclst))
+# 5G
 print("user topN and item topN saved")

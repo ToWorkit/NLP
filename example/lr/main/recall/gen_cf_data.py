@@ -9,8 +9,8 @@ train_file = conf.cf_train_data_path
 
 # 数据集
 def user_item_score():
-    # 读取10000条
-    user_watch = conf.gen_user_watch(10000)
+    # 读取90000条/全量
+    user_watch = conf.gen_user_watch(80000)
     # 取music_meta中商品总共的时长
     music_meta = conf.gen_music_meta()
     # print(user_watch)

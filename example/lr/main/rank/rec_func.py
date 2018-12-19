@@ -1,7 +1,7 @@
 import recall.config as conf
 import math
 
-def rec_func(user_id = '00b4b743cf561e441063edbb5554d14f'):
+def rec_func(user_id = '012457193169d597b9c531cd7842e3c1'):
     '''
         step1 载入特征处理
     '''
@@ -64,7 +64,7 @@ def rec_func(user_id = '00b4b743cf561e441063edbb5554d14f'):
                                                        category_feat_dict['salary_' + salary],
                                                        category_feat_dict['province_' + province])
 
-    # print('age: '+age,'gender: ' + gender,'salary: ' + salary,'province:' + province)
+    print('age: '+age,'gender: ' + gender,'salary: ' + salary,'province:' + province)
     rec_list = []
     for item_id in rec_item_all.keys():
         item_df = conf.gen_music_meta()
