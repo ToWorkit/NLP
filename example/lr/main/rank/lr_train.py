@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.utils.class_weight import compute_sample_weight
 
 user_feat_map_file = conf.user_feat_map_file
 cross_file = conf.cross_file
@@ -16,13 +17,15 @@ model_file = conf.model_file
 data = gcf.user_item_score()
 data['label'] = data['score'].apply(lambda x: 1 if x >= 1.0 else 0)
 
+# print(data['label'][:10])
+
 '''
 user_id, item_id, label 添加用户和item的信息
 '''
 # 获取user信息表数据
-user_profile = conf.get_user_profile()
+user_profile = conf.gen_user_profile()
 # 获取item信息表数据
-music_meta = conf.get_music_meta()
+music_meta = conf.gen_music_meta()
 '''
 print(user_profile[:10])
 print("*" * 20)
@@ -79,13 +82,13 @@ del data['label']
      比如在泰坦尼克号当中，有一个变量叫做乘客登陆的港口，取值为（C, Q, S）代表三个地方。这是一个典型的无序分类变量，我们在进行数据预处理的时候应该如何进行。 一种很容易想到的方法就是把每个值映射为一个数字，比如C=0, Q=1, S=2。 但是这样容易产生一个问题：我们实际上是把它们当做了有序的数字来进行看待了，2比1大，这就存在了顺序关系。但是我们的数据本来并不存在这样的关系。
   为了解决上面的问题，我们使用独热编码（One-Hot Encoding）对无序的分类变量进行处理。对于取值有m种情况的变量，我们用m维来表示。比如上面的变量可以取值100, 010，001， 仅当样本取值为第i种情况的时候，在第i维上面编码为1，其余维均编码为0。独热编码形成的变量也叫做虚变量或者哑变量（dummpy variable）
 '''
-# 1、离散特征作one-hot处理(有值或值无值作映射)
+# 1、离散特征作one-hot处理(有值或无值作映射)
 df = pd.get_dummies(data[category_feat])
 one_hot_columns = df.columns
 # 2、暂时不处理连续特征
 df[continous_feat] = data[continous_feat].astype(float)
 
-# print(df[:10])
+# print(df[:10].values)
 
 # 保存组合特征
 '''
@@ -106,6 +109,10 @@ with open(cross_file, 'w', encoding='utf-8') as cf:
     x_train 数据 y_train 对应标签
 '''
 x_train, x_test, y_train, y_test = train_test_split(df.values, labels, test_size = 0.3, random_state = 2018)
+# print("*" * 20)
+# print(x_train[:1])
+# [0., 1]
+# print(y_train[:1])
 
 '''
 训练
@@ -115,10 +122,22 @@ x_train, x_test, y_train, y_test = train_test_split(df.values, labels, test_size
         二分类
 '''
 lr = LogisticRegression(penalty='l2', dual=False, tol=1e-4, C=1.0,
-                        fit_intercept=True, intercept_scaling=1, class_weight=None,
+                        fit_intercept=True, intercept_scaling=1, class_weight={1 : 0.9, 0 : 0.1},
                         random_state=None, solver='liblinear', max_iter=100,
                         multi_class='ovr', verbose=0, warm_start=False, n_jobs=-1)
-model = lr.fit_transform(x_train, y_train)
+
+'''
+sample_weight
+    label分布不均匀(平衡时使用)
+    可用来调节单独一个属性的权重
+'''
+
+print(compute_sample_weight(class_weight='balanced', y = y_train))
+
+# model = lr.fit(x_train, y_train, sample_weight = [float(i) for i in range(len(x_train))])
+model = lr.fit(x_train, y_train, sample_weight = compute_sample_weight(class_weight='balanced', y = y_train))
+# model = lr.fit_transform(x_train, y_train)
+
 
 '''
 查看模型
