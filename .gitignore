@@ -12,8 +12,9 @@ selenium-debug.log
 ml_base/.ipynb_checkpoints
 example/lr/main/raw_data
 example/lr/main/data
-example/lr/main/rank/__pycache__
-example/lr/main/recall/__pycache__
+example/lr/main/rank/__pycache__/
+example/lr/main/recall/__pycache__/
+example\\lr\\main\\rank\\__pycache__\
 
 # Editor directories and files
 .idea
